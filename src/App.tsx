@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './App.css';
+
+import NavBar from './components/NavBar';
+import HomePage from './pages/HomePage';
+import EntertainersListPage from './pages/EntertainersListPage';
+import EntertainerDetailPage from './pages/EntertainerDetailPage';
+import EntertainerFormPage from './pages/EntertainerFormPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <NavBar />
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/entertainers" element={<EntertainersListPage />} />
+            <Route path="/entertainers/new" element={<EntertainerFormPage />} />
+            <Route path="/entertainers/:id" element={<EntertainerDetailPage />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 
